@@ -14,7 +14,7 @@ function Login(){
                     <div className="loginCardTop">
                         <div className ="loginSelected">Login</div>
                         <div className ="loginRegister">
-                            <button className="registerButton">Registrar</button>
+                            <button className="registerButton">Cadastrar</button>
                             
                         </div>
                          
