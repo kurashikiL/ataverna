@@ -1,6 +1,6 @@
 import "./rightbar.css"
 
-function Rightbar(){
+function Rightbar({profile}){
     return(
         <div className="rightbar">
             <div className="rightbarWrapper">

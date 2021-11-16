@@ -14,7 +14,7 @@ function Home(){
                 <Rightbar/>
             </div>
         </>
-    )
+    );
 }
 
 export default Home;

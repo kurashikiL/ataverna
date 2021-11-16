@@ -1,4 +1,6 @@
 import "./login.css"
+import { Link } from "react-router-dom";
+
 
 function Login(){
     return(
@@ -14,8 +16,9 @@ function Login(){
                     <div className="loginCardTop">
                         <div className ="loginSelected">Login</div>
                         <div className ="loginRegister">
-                            <button className="registerButton">Cadastrar</button>
-                            
+                            <Link to="/register" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <button className="registerButton">Cadastrar</button>
+                            </Link>
                         </div>
                          
                     </div>

@@ -1,4 +1,5 @@
 import "./register.css"
+import { Link } from "react-router-dom";
 
 function Register(){
     return(
@@ -14,7 +15,9 @@ function Register(){
                     <div className="registerCardTop">
 
                         <div className ="registerLogin">
-                            <button className="loginButton">Login</button>
+                            <Link to="/login" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                <button className="loginButton">Login</button>
+                            </Link>
                         </div>
                         <div className ="registerSelected">Cadastrar</div>
                          
