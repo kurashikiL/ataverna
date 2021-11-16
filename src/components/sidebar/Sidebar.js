@@ -1,15 +1,18 @@
 import "./sidebar.css"
-import {Chat,Forum, Group, GroupWork, Help, Person, Settings, Videocam, DateRange} from "@material-ui/icons"
+import {Chat,Forum, Group, GroupWork, Help, Person, Settings, Videocam, DateRange} from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 function Sidebar(){
     return(
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
-                    <li className="sidebarListItem">
-                        <Person className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Perfil</span>
-                    </li>
+                    <Link to="/profile" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <Person className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Perfil</span>
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <Chat className="sidebarIcon"/>
                         <span className="sidebarListItemText">Chat</span>

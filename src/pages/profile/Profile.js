@@ -23,8 +23,6 @@ function Profile(){
                     </div>
                 
                     <div className="profileRightBottom">
-                        <Feed/>
-                        <Rightbar profile/>
                     </div>
                 </div>
 
