@@ -21,10 +21,12 @@ function Sidebar(){
                         <Group className="sidebarIcon"/>
                         <span className="sidebarListItemText">Amigos</span>
                     </li>
-                    <li className="sidebarListItem">
-                        <DateRange className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Sessões</span>
-                    </li>
+                    <Link to="/sessions" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <DateRange className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Sessões</span>
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <Forum className="sidebarIcon"/>
                         <span className="sidebarListItemText">Comunidades</span>
