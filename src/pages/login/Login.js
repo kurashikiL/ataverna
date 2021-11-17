@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import {loginSchema} from "../../validation/loginValidation";
 import firebase from '../../Firebase.js';
-
+import 'firebase/auth';
 
 
 function Login(){
@@ -15,28 +15,33 @@ function Login(){
         resolver: yupResolver(loginSchema),
     });
 
-    const submitForm = data => {
+    const submitForm = async (data) => {
         console.log(data);
 
-        /// ACESSA O BANCO E CONFERE SE TEM LOGIN E SENHA IGUAIS
-        firebase.ref("users").on("value", (snapshot) => {
-
-            let usuario=[];
-
-            snapshot.forEach(function(item){
-                var key = item.key;
-                var valor=item.val();
-
-                console.log(key);
-                console.log(valor);
-                if(key == data.login && valor.password == data.password){
-                    navigate("/");
-                }
-            });
-            
-        });
+        await firebase.auth().signInWithEmailAndPassword(data.email,data.password);
+        navigate("/");
 
         console.log("Usuario não encontrado!");
+
+        
+        /// ACESSA O BANCO E CONFERE SE TEM LOGIN E SENHA IGUAIS
+        // firebase.ref("users").on("value", (snapshot) => {
+
+        //     let usuario=[];
+
+        //     snapshot.forEach(function(item){
+        //         var key = item.key;
+        //         var valor=item.val();
+
+        //         console.log(key);
+        //         console.log(valor);
+        //         if(key == data.login && valor.password == data.password){
+        //             navigate("/");
+        //         }
+        //     });
+            
+        // });
+
     };
 
 
@@ -61,7 +66,7 @@ function Login(){
                     </div>
                     <form onSubmit={handleSubmit(submitForm)}>
                         <div className="loginInputs">
-                            <input placeholder="Login" {...register('login')}></input>
+                            <input placeholder="Login" {...register('email')}></input>
                             <span className ="loginMainError">{
                                         errors.login && "Todos os campos são obrigatórios!"
                                     || errors.password && "Todos os campos são obrigatórios!"}

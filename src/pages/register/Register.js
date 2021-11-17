@@ -1,29 +1,66 @@
 import "./register.css"
 import {userSchema} from "../../validation/userValidation.js";
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "@material-ui/core";
 
-import firebase from '../../Firebase.js';
+import firebase from '../../Firebase';
 
 function Register(){
   
-
+    const navigate = useNavigate();
+    
     const {register,handleSubmit,formState: { errors }} = useForm({
         resolver: yupResolver(userSchema),
     });
 
-    const submitForm = data => {
+
+
+    const submitForm = async (data) => {
         console.log(data);
-        firebase.ref('users').child(data.login).set({name:data.name, email:data.email, password:data.password})
+
+        // CADASTRAR
+        await firebase.auth().createUserWithEmailAndPassword(data.email,data.password)
         .then(() => {
-            console.log("cadastrado com sucesso");
+            console.log("Cadastrou com sucesso!");
         })
-        .catch((erro) =>{
-            console.log("erro: " + erro);
+        .catch((error) => {
+            if(error.code === 'auth/email-already-in-use'){
+                alert("email já está em uso!");
+            }
         })
+
+        navigate("/");
+        
+
+        // firebase.ref("users").on("value", (snapshot) => {
+
+        //     let usuario=[];
+
+        //     snapshot.forEach(function(item){
+        //         var key = item.key;
+
+        //         if(key == data.login){
+        //             console.log("usuário já cadastrado!");
+        //             return;
+        //         }
+        //     });
+        // });
+
+
+
+        // firebase.ref('users').child(data.login).set({name:data.name, email:data.email, password:data.password})
+        // .then(() => {
+        //     console.log("cadastrado com sucesso");
+        // })
+        // .catch((erro) =>{
+        //     console.log("erro: " + erro);
+        // })
     };
+
+
 
     return(
         <div className="register">
