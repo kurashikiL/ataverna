@@ -1,5 +1,5 @@
 import "./login.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import {loginSchema} from "../../validation/loginValidation";
@@ -8,12 +8,16 @@ import {loginSchema} from "../../validation/loginValidation";
 
 function Login(){
 
+    const navigate = useNavigate();
 
     const {register,handleSubmit,formState: { errors }} = useForm({
         resolver: yupResolver(loginSchema),
     });
 
-    const submitForm = data => console.log(data);
+    const submitForm = data => {
+        console.log(data);
+        navigate("/");
+    };
 
 
     return(
