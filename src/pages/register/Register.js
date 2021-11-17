@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "@material-ui/core";
-import { ErrorSharp } from "@material-ui/icons";
+
+import firebase from '../../Firebase.js';
 
 function Register(){
   
@@ -13,7 +14,16 @@ function Register(){
         resolver: yupResolver(userSchema),
     });
 
-    const submitForm = data => console.log(data);
+    const submitForm = data => {
+        console.log(data);
+        firebase.ref('users').child(data.login).set({name:data.name, email:data.email, password:data.password})
+        .then(() => {
+            console.log("cadastrado com sucesso");
+        })
+        .catch((erro) =>{
+            console.log("erro: " + erro);
+        })
+    };
 
     return(
         <div className="register">
