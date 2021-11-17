@@ -1,7 +1,20 @@
 import "./register.css"
+import {userSchema} from "../../validation/userValidation.js";
 import { Link } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Input } from "@material-ui/core";
+import { ErrorSharp } from "@material-ui/icons";
 
 function Register(){
+  
+
+    const {register,handleSubmit,formState: { errors }} = useForm({
+        resolver: yupResolver(userSchema),
+    });
+
+    const submitForm = data => console.log(data);
+
     return(
         <div className="register">
             <div className="registerLeft">
@@ -22,21 +35,37 @@ function Register(){
                         <div className ="registerSelected">Cadastrar</div>
                          
                     </div>
-                    <div className="registerInputs">
+                    <form onSubmit={handleSubmit(submitForm)}>
+                        <div className="registerInputs">
+                            
+                                <input name="name" placeholder="Nome ou apelido"  {...register('name')}></input>
+                                <span className ="registerMainError">{errors.name && "Todos os campos são obrigatórios!" 
+                                    || errors.login && "Todos os campos são obrigatórios!"
+                                    || errors.email && errors.email.type==="required" && "Todos os campos são obrigatórios!"
+                                    || errors.password && "Todos os campos são obrigatórios!"
+                                    || errors.confirmPassword && errors.confirmPassword.type==="required" && "Todos os campos são obrigatórios!"}
+                                </span>
+                                <br></br>                               
+                                <input name="login" placeholder="Login" {...register('login')}></input>
+                                <br></br>
+                                 
+                                <input name="email" placeholder="E-mail" {...register('email')}></input>
+                                <span className ="registerSecondaryError">
+                                    {errors.email && errors.email.type==="email" && "Insira um e-mail válido"}
+                                </span>
+                                <br></br>
 
-                        <input placeholder="Nome Completo"></input>
-                        <br></br>
-                        <input placeholder="Login"></input>
-                        <br></br>
-                        <input placeholder="E-mail"></input>
-                        <br></br>
-                        <input type="password"  placeholder="Senha"></input>
-                        <br></br>
-                        <input type="password"  placeholder="Confirmar Senha"></input>
+                                <input name="password" type="password"  placeholder="Senha" {...register('password')}></input>
+                                <br></br>
+                                
+                                <input name="confirmPassword" type="password"  placeholder="Confirmar Senha" {...register('confirmPassword')}></input>
+                                <span className ="registerSecondaryError">
+                                    {errors.confirmPassword && errors.confirmPassword.type==="oneOf" && "Senhas não são iguais"}
+                                </span>
 
-                    </div>
-                    <button className="enterButton"> Cadastrar </button>
-                    
+                        </div>
+                        <input type="submit" name="submit" className="enterButton" value="Cadastrar"></input>
+                    </form>
                 </div>
             </div>
 
