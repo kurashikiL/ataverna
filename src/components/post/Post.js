@@ -16,7 +16,7 @@ function Post({post}){
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <img className = "postProfileImg" src="/assets/person/1.jpg" alt=""/>
+                        <img className = "postProfileImg" src={Users.filter((u)=>u.id === post.userId)[0].profilePic} alt=""/>
                         <span className = "postUsername">{Users.filter((u)=>u.id === post.userId)[0].username}</span>
                         <span className = "postDate">{post.date}</span>
                     </div>

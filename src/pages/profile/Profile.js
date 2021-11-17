@@ -3,7 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Feed from "../../components/feed/Feed";
-
+import StarRating from "../../components/starrating/Star";
 function Profile(){
     return(
         <>
@@ -23,6 +23,10 @@ function Profile(){
                     </div>
                 
                     <div className="profileRightBottom">
+                        <StarRating/>
+                        <div className="profileTags">
+                            
+                        </div>
                     </div>
                 </div>
 
