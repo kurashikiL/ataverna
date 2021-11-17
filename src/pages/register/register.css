@@ -109,6 +109,9 @@
 }
 
 .enterButton{
+    position: absolute;
+    left: 800px;
+
 
     width: 20%;
     background-color: #FD3305;
@@ -125,4 +128,20 @@
 
 .enterButton:hover{
     background-color: #fd5d38;
+}
+
+.registerMainError{
+    position: absolute;
+    right:160px;
+    top: 260px;
+    color: #FD3305;
+    font-style: bold;
+}
+
+.registerSecondaryError{
+    position: relative;
+    left:432px;
+    bottom:44px;
+    color: #FD3305;
+    font-style: bold;
 }

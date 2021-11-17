@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "@material-ui/core";
+import { ErrorSharp } from "@material-ui/icons";
 
 function Register(){
   
@@ -38,23 +39,29 @@ function Register(){
                         <div className="registerInputs">
                             
                                 <input name="name" placeholder="Nome ou apelido"  {...register('name')}></input>
-                                {errors.name && "Todos os campos são obrigatórios!" 
-                                || errors.login && "Todos os campos são obrigatórios!"
-                                || errors.email && "Todos os campos são obrigatórios!"
-                                || errors.password && "Todos os campos são obrigatórios!"
-                                || errors.confirmPassword && errors.confirmPassword.type==="required" && "Todos os campos são obrigatórios!"}
+                                <span className ="registerMainError">{errors.name && "Todos os campos são obrigatórios!" 
+                                    || errors.login && "Todos os campos são obrigatórios!"
+                                    || errors.email && errors.email.type==="required" && "Todos os campos são obrigatórios!"
+                                    || errors.password && "Todos os campos são obrigatórios!"
+                                    || errors.confirmPassword && errors.confirmPassword.type==="required" && "Todos os campos são obrigatórios!"}
+                                </span>
                                 <br></br>                               
                                 <input name="login" placeholder="Login" {...register('login')}></input>
-                                {errors.login && "Esse campo é obrigatório"}
                                 <br></br>
+                                 
                                 <input name="email" placeholder="E-mail" {...register('email')}></input>
-                                {errors.email && "Insira um e-mail válido"}
+                                <span className ="registerSecondaryError">
+                                    {errors.email && errors.email.type==="email" && "Insira um e-mail válido"}
+                                </span>
                                 <br></br>
+
                                 <input name="password" type="password"  placeholder="Senha" {...register('password')}></input>
-                                {errors.password && "Esse campo é obrigatório"}
                                 <br></br>
+                                
                                 <input name="confirmPassword" type="password"  placeholder="Confirmar Senha" {...register('confirmPassword')}></input>
-                                {errors.confirmPassword && "Senhas não são iguais"}
+                                <span className ="registerSecondaryError">
+                                    {errors.confirmPassword && errors.confirmPassword.type==="oneOf" && "Senhas não são iguais"}
+                                </span>
 
                         </div>
                         <input type="submit" name="submit" className="enterButton" value="Cadastrar"></input>
