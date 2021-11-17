@@ -109,15 +109,12 @@
 }
 
 .enterButton{
-    position: absolute;
-    left: 800px;
 
-
-    width: 20%;
+    width: 30%;
     background-color: #FD3305;
     color: white;
     padding: 20px 20px;
-    margin: 12px -20px;
+    margin: 12px -52px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -132,7 +129,7 @@
 
 .registerMainError{
     position: absolute;
-    right:160px;
+    right:348px;
     top: 260px;
     color: #FD3305;
     font-style: bold;

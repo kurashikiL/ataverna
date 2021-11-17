@@ -151,3 +151,11 @@
     font-style: bold;
     text-align: center;
 }
+
+.loginMainError{
+    position: absolute;
+    right:348px;
+    top: 400px;
+    color: #FD3305;
+    font-style: bold;
+}
