@@ -4,7 +4,11 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Feed from "../../components/feed/Feed";
 import StarRating from "../../components/starrating/Star";
+import firebase from '../../Firebase.js';
+
 function Profile(){
+    const user = localStorage.getItem('user');
+
     return(
         <>
             <Topbar/>

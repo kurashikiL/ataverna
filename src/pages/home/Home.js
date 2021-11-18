@@ -5,7 +5,8 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import Feed from "../../components/feed/Feed";
 
 function Home(){
-    return(
+
+    return(   
         <>
             <Topbar/>
             <div className="homeContainer">
@@ -15,6 +16,8 @@ function Home(){
             </div>
         </>
     );
+    
+ 
 }
 
 export default Home;

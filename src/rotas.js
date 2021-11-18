@@ -7,7 +7,7 @@ import Register from "./pages/register/Register";
 import Session from "./pages/sessions/Sessions";
 
 const Rotas = () =>{
-
+    
     return (
         <BrowserRouter>
             <Routes>

@@ -22,7 +22,7 @@ function Login(){
         firebase.ref("users").on("value", (snapshot) => {
 
             let usuario=[];
-
+            const { user, rememberMe } = this.state;
             snapshot.forEach(function(item){
                 var key = item.key;
                 var valor=item.val();
