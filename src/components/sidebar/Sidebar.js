@@ -21,18 +21,24 @@ function Sidebar(){
                         <Group className="sidebarIcon"/>
                         <span className="sidebarListItemText">Amigos</span>
                     </li>
-                    <li className="sidebarListItem">
-                        <DateRange className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Sessões</span>
-                    </li>
-                    <li className="sidebarListItem">
-                        <Forum className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Comunidades</span>
-                    </li>
-                    <li className="sidebarListItem">
-                        <GroupWork className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Grupos</span>
-                    </li>
+                    <Link to="/sessions" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <DateRange className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Sessões</span>
+                        </li>
+                    </Link>
+                    <Link to="/community" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <Forum className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Comunidades</span>
+                        </li>
+                    </Link>
+                    <Link to="/groups" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <GroupWork className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Grupos</span>
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <Videocam className="sidebarIcon"/>
                         <span className="sidebarListItemText">Streams</span>

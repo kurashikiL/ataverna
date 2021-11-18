@@ -23,14 +23,18 @@ function Login(){
             await firebase.firestore().collection("user").doc(value.user.uid)
             .get()
             .then((snapshot)=>{
-
-                var nome = snapshot.data().name;
-                alert("bem vindo " + nome);
                 navigate("/");
-            })
-            
+            });
+
         })
-        
+        .catch((error) => {
+            if(error.code === 'auth/wrong-password'){
+                alert("email ou senha incorretos!");
+            }else{
+                console.log("Deu ruim!");
+                console.log("Erro: " + error);
+            }
+        })
 
         // console.log("Usuario não encontrado!");
 
@@ -38,11 +42,11 @@ function Login(){
         /// ACESSA O BANCO E CONFERE SE TEM LOGIN E SENHA IGUAIS
         // firebase.ref("users").on("value", (snapshot) => {
 
-        //     let usuario=[];
-
-        //     snapshot.forEach(function(item){
-        //         var key = item.key;
-        //         var valor=item.val();
+        // let usuario=[];
+        // const { user, rememberMe } = this.state;
+        // snapshot.forEach(function(item){
+        //     var key = item.key;
+        //     var valor=item.val();
 
         //         console.log(key);
         //         console.log(valor);
