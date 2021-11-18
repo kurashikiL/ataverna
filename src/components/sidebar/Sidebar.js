@@ -27,10 +27,12 @@ function Sidebar(){
                             <span className="sidebarListItemText">Sessões</span>
                         </li>
                     </Link>
-                    <li className="sidebarListItem">
-                        <Forum className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Comunidades</span>
-                    </li>
+                    <Link to="/community" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <Forum className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Comunidades</span>
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <GroupWork className="sidebarIcon"/>
                         <span className="sidebarListItemText">Grupos</span>

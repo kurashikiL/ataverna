@@ -5,7 +5,7 @@ import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Session from "./pages/sessions/Sessions";
-
+import Community from "./pages/communities/Community";
 const Rotas = () =>{
     
     return (
@@ -16,6 +16,7 @@ const Rotas = () =>{
                 <Route exact={true} path="/login" element={<Login />} />
                 <Route exact={true} path="/register" element={<Register />} />
                 <Route exact={true} path="/sessions" element={<Session />} />
+                <Route exact={true} path="/community" element={<Community />} />
             </Routes>
         </BrowserRouter>
     )
