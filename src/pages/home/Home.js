@@ -1,5 +1,5 @@
 import "./home.css";
-import React, {Component} from 'react';
+import React, {Component, useLayoutEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -8,45 +8,35 @@ import Feed from "../../components/feed/Feed";
 import firebase from '../../Firebase';
 
 
-class Home extends Component{
+function Home(){
 
+    const navigate = useNavigate();
 
-    componentDidMount(){
+    let uid="";
 
-        // var navigate = useNavigate();
-
+    useLayoutEffect(() => {
         firebase.auth().onAuthStateChanged((user) =>{
-
             if(user){
-                // console.log(user.uid);
-                // firebase.firestore().collection("user").doc(user.uid)
-                // .get()
-                // .then((snapshot)=>{
-
-                //     var nome = snapshot.data().name;
-                // })
-
+                console.log("usuário logado");
+                uid = user.uid;
             }else{
-                // console.log("Não ta logado!");
-                // navigate("/login");
-                // ACHAR UM JEITO DE REDIRECIONAR PARA LOGIN!
+                console.log("nenhum usuário logado, redirecionando...")
+                navigate("/login");
             }
-
         });
-    }
+    },[]);
 
-    render(){
-        return(
-            <>
-                <Topbar/>
-                <div className="homeContainer">
-                    <Sidebar/>
-                    <Feed/>
-                    <Rightbar/>
-                </div>
-            </>
-        );
-    }
+
+    return(
+        <>
+            <Topbar/>
+            <div className="homeContainer">
+                <Sidebar/>
+                <Feed/>
+                <Rightbar/>
+            </div>
+        </>
+    );
 }
 
 export default Home;

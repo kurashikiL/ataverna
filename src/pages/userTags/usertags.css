@@ -48,3 +48,22 @@ fieldset {
     clear: none;
     margin: 2px 0 0 2px;
   }
+
+  .enterButton{
+
+    width: 30%;
+    background-color: #FD3305;
+    color: white;
+    padding: 20px 20px;
+    margin: 12px -52px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 20px;
+    font-style: bold;
+}
+
+.enterButton:hover{
+    background-color: #fd5d38;
+}

@@ -1,6 +1,6 @@
 import "./usertags.css"
 import {userSchema} from "../../validation/userValidation.js";
-import React, {Component} from 'react';
+import React, {Component, useLayoutEffect} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -77,10 +77,109 @@ function Usertag(){
         resolver: yupResolver(userSchema),
     });
 
+    // const submitForm = async (data) => {
+    //     console.log(data);
+    //     setProfilePic(data);
+
+    // }
+
+    const navigate = useNavigate();
+
+    let uid="";
+
+    useLayoutEffect(() => {
+        firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                console.log("usuário logado");
+                uid = user.uid;
+            }else{
+                console.log("nenhum usuário logado, redirecionando...")
+                navigate("/login");
+            }
+        });
+    },[]);
+
+    async function setProfilePic(e){
+
+        let file = e.target.files[0];
+
+        await firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                // console.log(user.uid);
+
+                firebase.storage().ref("ProfilePic").child(uid).put(file)
+                .then((e) => {
+                    console.log("Upload feito!");
+                    navigate("/");
+                });
+                
+                // firebase.firestore().collection("user").doc(user.uid)
+                // .get()
+                // .then((snapshot)=>{
+
+                //     var nome = snapshot.data().name;
+                // })
+
+            }else{
+                navigate("/login");
+            }
+
+        });
+
+
+
+    };
+    async function setCoverPic(e){
+
+        let file = e.target.files[0];
+
+        await firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                // console.log(user.uid);
+
+                firebase.storage().ref("ProfilePic").child(uid).put(file)
+                .then((e) => {
+                    console.log("Upload feito!");
+                    navigate("/");
+                });
+                
+                // firebase.firestore().collection("user").doc(user.uid)
+                // .get()
+                // .then((snapshot)=>{
+
+                //     var nome = snapshot.data().name;
+                // })
+
+            }else{
+                navigate("/login");
+            }
+
+        });
+    };
+
     const submitForm = async (data) => {
         console.log(data);
-    }
 
+        // CADASTRAR
+        await firebase.auth().createUserWithEmailAndPassword(data.email,data.password)
+        .then( async (value) => {
+            await firebase.firestore().collection("user").doc(value.user.uid)
+            .set({
+                name: data.name,
+                nick: data.nick,
+            });
+            console.log("Cadastrou com sucesso!");
+            navigate("/tags");
+        })
+        .catch((error) => {
+            if(error.code === 'auth/email-already-in-use'){
+                alert("email já está em uso!");
+            }else{
+                console.log("Deu ruim!");
+                console.log("Erro: " + error);
+            }
+        })
+    };
 
     return(
         <div className="cardScreen">
@@ -90,10 +189,10 @@ function Usertag(){
                     <form onSubmit={handleSubmit(submitForm)}>
                         <div className="tagsInputs">
                             Foto de perfil:
-                            <input id="upPic" type="file" ></input>
+                            <input id="upPic" type="file" onSubmit={(e) => {setProfilePic(e)}}></input>
                             <br></br>
                             Foto de capa:
-                            <input id="upCoverPic" type="file" ></input>
+                            <input id="upCoverPic" type="file" onSubmit={(e) => {setCoverePic(e)}}></input>
                             <br></br>
                             Descrição:                       
                             <input type="text" name="desc" placeholder="Descrição"></input>
@@ -146,6 +245,7 @@ function Usertag(){
                                 </Select>
                             </FormControl>
                         </div>
+                        <input type="submit" name="submit" className="enterButton" value="Cadastrar"></input>
                     </form>
                 </div>
             </div>
