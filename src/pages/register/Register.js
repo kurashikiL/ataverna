@@ -40,33 +40,6 @@ function Register(){
                 console.log("Erro: " + error);
             }
         })
-
-        
-        
-
-        // firebase.ref("users").on("value", (snapshot) => {
-
-        //     let usuario=[];
-
-        //     snapshot.forEach(function(item){
-        //         var key = item.key;
-
-        //         if(key == data.login){
-        //             console.log("usuário já cadastrado!");
-        //             return;
-        //         }
-        //     });
-        // });
-
-
-
-        // firebase.ref('users').child(data.login).set({name:data.name, email:data.email, password:data.password})
-        // .then(() => {
-        //     console.log("cadastrado com sucesso");
-        // })
-        // .catch((erro) =>{
-        //     console.log("erro: " + erro);
-        // })
     };
 
 

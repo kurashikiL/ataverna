@@ -36,27 +36,6 @@ function Login(){
             }
         })
 
-        // console.log("Usuario não encontrado!");
-
-        
-        /// ACESSA O BANCO E CONFERE SE TEM LOGIN E SENHA IGUAIS
-        // firebase.ref("users").on("value", (snapshot) => {
-
-        // let usuario=[];
-        // const { user, rememberMe } = this.state;
-        // snapshot.forEach(function(item){
-        //     var key = item.key;
-        //     var valor=item.val();
-
-        //         console.log(key);
-        //         console.log(valor);
-        //         if(key == data.login && valor.password == data.password){
-        //             navigate("/");
-        //         }
-        //     });
-            
-        // });
-
     };
 
 

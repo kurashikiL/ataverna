@@ -9,16 +9,6 @@ import { Person } from "@material-ui/icons";
 import firebase from '../../Firebase';
 
 function Usertag(){
-    
-    // const {register,handleSubmit,formState: { errors }} = useForm({
-    //     resolver: yupResolver(userSchema),
-    // });
-
-    // const submitForm = async (data) => {
-    //     console.log(data);
-    //     setProfilePic(data);
-
-    // }
 
     const navigate = useNavigate();
 
@@ -42,7 +32,6 @@ function Usertag(){
 
         await firebase.auth().onAuthStateChanged((user) =>{
             if(user){
-                // console.log(user.uid);
 
                 firebase.storage().ref("ProfilePic").child(uid).put(file)
                 .then((e) => {
@@ -50,12 +39,6 @@ function Usertag(){
                     navigate("/");
                 });
                 
-                // firebase.firestore().collection("user").doc(user.uid)
-                // .get()
-                // .then((snapshot)=>{
-
-                //     var nome = snapshot.data().name;
-                // })
 
             }else{
                 navigate("/login");
