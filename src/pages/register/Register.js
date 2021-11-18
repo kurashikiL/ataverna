@@ -23,16 +23,25 @@ function Register(){
 
         // CADASTRAR
         await firebase.auth().createUserWithEmailAndPassword(data.email,data.password)
-        .then(() => {
+        .then( async (value) => {
+            await firebase.firestore().collection("user").doc(value.user.uid)
+            .set({
+                name: data.name,
+                login: data.login,
+            });
             console.log("Cadastrou com sucesso!");
+            navigate("/");
         })
         .catch((error) => {
             if(error.code === 'auth/email-already-in-use'){
                 alert("email já está em uso!");
+            }else{
+                console.log("Deu ruim!");
+                console.log("Erro: " + error);
             }
         })
 
-        navigate("/");
+        
         
 
         // firebase.ref("users").on("value", (snapshot) => {

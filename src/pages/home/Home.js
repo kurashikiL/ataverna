@@ -20,6 +20,15 @@ class Home extends Component{
 
             if(user){
                 console.log("ta logado!");
+                console.log(user.uid);
+                firebase.firestore().collection("user").doc(user.uid)
+                .get()
+                .then((snapshot)=>{
+
+                    var nome = snapshot.data().name;
+                    alert("bem vindo " + nome);
+                })
+
             }else{
                 console.log("Não ta logado!");
                 // navigate("/login");

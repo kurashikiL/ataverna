@@ -18,10 +18,21 @@ function Login(){
     const submitForm = async (data) => {
         console.log(data);
 
-        await firebase.auth().signInWithEmailAndPassword(data.email,data.password);
-        navigate("/");
+        await firebase.auth().signInWithEmailAndPassword(data.email,data.password)
+        .then( async (value) =>{
+            await firebase.firestore().collection("user").doc(value.user.uid)
+            .get()
+            .then((snapshot)=>{
 
-        console.log("Usuario não encontrado!");
+                var nome = snapshot.data().name;
+                alert("bem vindo " + nome);
+                navigate("/");
+            })
+            
+        })
+        
+
+        // console.log("Usuario não encontrado!");
 
         
         /// ACESSA O BANCO E CONFERE SE TEM LOGIN E SENHA IGUAIS
