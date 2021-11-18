@@ -33,10 +33,12 @@ function Sidebar(){
                             <span className="sidebarListItemText">Comunidades</span>
                         </li>
                     </Link>
-                    <li className="sidebarListItem">
-                        <GroupWork className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Grupos</span>
-                    </li>
+                    <Link to="/groups" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <GroupWork className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Grupos</span>
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <Videocam className="sidebarIcon"/>
                         <span className="sidebarListItemText">Streams</span>

@@ -7,8 +7,6 @@ import StarRating from "../../components/starrating/Star";
 import firebase from '../../Firebase.js';
 
 function Profile(){
-    const user = localStorage.getItem('user');
-
     return(
         <>
             <Topbar/>
