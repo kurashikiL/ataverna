@@ -27,10 +27,10 @@ function Register(){
             await firebase.firestore().collection("user").doc(value.user.uid)
             .set({
                 name: data.name,
-                login: data.login,
+                nick: data.nick,
             });
             console.log("Cadastrou com sucesso!");
-            navigate("/");
+            navigate("/tags");
         })
         .catch((error) => {
             if(error.code === 'auth/email-already-in-use'){
@@ -94,15 +94,15 @@ function Register(){
                     <form onSubmit={handleSubmit(submitForm)}>
                         <div className="registerInputs">
                             
-                                <input name="name" placeholder="Nome ou apelido"  {...register('name')}></input>
+                                <input name="name" placeholder="Nome Completo"  {...register('name')}></input>
                                 <span className ="registerMainError">{errors.name && "Todos os campos são obrigatórios!" 
-                                    || errors.login && "Todos os campos são obrigatórios!"
+                                    || errors.nick && "Todos os campos são obrigatórios!"
                                     || errors.email && errors.email.type==="required" && "Todos os campos são obrigatórios!"
                                     || errors.password && "Todos os campos são obrigatórios!"
                                     || errors.confirmPassword && errors.confirmPassword.type==="required" && "Todos os campos são obrigatórios!"}
                                 </span>
                                 <br></br>                               
-                                <input name="login" placeholder="Login" {...register('login')}></input>
+                                <input name="nick" placeholder="Apelido" {...register('nick')}></input>
                                 <br></br>
                                  
                                 <input name="email" placeholder="E-mail" {...register('email')}></input>

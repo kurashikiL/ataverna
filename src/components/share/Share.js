@@ -1,12 +1,35 @@
 import "./share.css";
 import {Photo,AttachFile,Videocam} from "@material-ui/icons";
 
+import firebase from '../../Firebase';
+import React, {Component, useLayoutEffect, useState} from 'react';
+
 function Share() {
+
+    let uid="";
+
+    const [profilePic, setProfilePic] = useState();
+
+    useLayoutEffect(() => {
+        firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                uid = user.uid;
+                firebase.storage().ref("ProfilePic").child(uid).getDownloadURL()
+                .then( async (url) => {
+                    setProfilePic(url);
+                });
+                    
+                
+            }
+        });
+    },[]);
+
+
     return(
         <div className="share">
             <div className="shareWrapper">
                 <div className="shareTop">
-                    <img className = "shareProfileImg" src="/assets/person/1.jpg" alt=""/>
+                    <img className = "shareProfileImg" src={profilePic} alt=""/>
                     <input placeholder="Conte sua história" className="shareInput"/>
                 </div>
                 <hr className="shareHr"/>

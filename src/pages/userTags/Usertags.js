@@ -1,6 +1,6 @@
 import "./usertags.css"
 import {userSchema} from "../../validation/userValidation.js";
-import React, {Component} from 'react';
+import React, {Component, useLayoutEffect} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,23 +10,71 @@ import firebase from '../../Firebase';
 
 function Usertag(){
     
-    const {register,handleSubmit,formState: { errors }} = useForm({
-        resolver: yupResolver(userSchema),
-    });
+    // const {register,handleSubmit,formState: { errors }} = useForm({
+    //     resolver: yupResolver(userSchema),
+    // });
 
-    const submitForm = async (data) => {
-        console.log(data);
-    }
+    // const submitForm = async (data) => {
+    //     console.log(data);
+    //     setProfilePic(data);
+
+    // }
+
+    const navigate = useNavigate();
+
+    let uid="";
+
+    useLayoutEffect(() => {
+        firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                console.log("usuário logado");
+                uid = user.uid;
+            }else{
+                console.log("nenhum usuário logado, redirecionando...")
+                navigate("/login");
+            }
+        });
+    },[]);
+
+    async function setProfilePic(e){
+
+        let file = e.target.files[0];
+
+        await firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                // console.log(user.uid);
+
+                firebase.storage().ref("ProfilePic").child(uid).put(file)
+                .then((e) => {
+                    console.log("Upload feito!");
+                    navigate("/");
+                });
+                
+                // firebase.firestore().collection("user").doc(user.uid)
+                // .get()
+                // .then((snapshot)=>{
+
+                //     var nome = snapshot.data().name;
+                // })
+
+            }else{
+                navigate("/login");
+            }
+
+        });
+
+
+
+    };
 
     return(
         <div className="cardScreen">
             <div className="cardTags">
                 <div className="cardTagsItem">
                     <h1>Informações de Perfil</h1>
-                    <form onSubmit={handleSubmit(submitForm)}>
+                    <form /*onSubmit={handleSubmit(submitForm)}*/>
                         <div>
-                            <Person font-size="32px"/>
-                            <input id="upPic" type="file" placeholder="FotoPerfil"></input>
+                            <input id="upPic" type="file" onChange={(e) => {setProfilePic(e)}}></input>
                             <br></br>                               
                             <input name="desc" placeholder="Descrição"></input>
                             <br></br>

@@ -81,7 +81,7 @@ function Login(){
                     </div>
                     <form onSubmit={handleSubmit(submitForm)}>
                         <div className="loginInputs">
-                            <input placeholder="Login" {...register('email')}></input>
+                            <input placeholder="E-mail" {...register('email')}></input>
                             <span className ="loginMainError">{
                                         errors.email && "Todos os campos são obrigatórios!"
                                     || errors.password && "Todos os campos são obrigatórios!"}
