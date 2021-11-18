@@ -7,6 +7,7 @@ import Register from "./pages/register/Register";
 import Session from "./pages/sessions/Sessions";
 import Community from "./pages/communities/Community";
 import Groups from "./pages/groups/Groups";
+import Usertag from "./pages/userTags/Usertags";
 const Rotas = () =>{
     
     return (
@@ -19,6 +20,7 @@ const Rotas = () =>{
                 <Route exact={true} path="/sessions" element={<Session />} />
                 <Route exact={true} path="/community" element={<Community />} />
                 <Route exact={true} path="/groups" element={<Groups />} />
+                <Route exact={true} path="/tags" element={<Usertag />} />
             </Routes>
         </BrowserRouter>
     )
