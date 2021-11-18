@@ -135,10 +135,18 @@
     font-style: bold;
 }
 
-.registerSecondaryError{
+.registerEmailError{
     position: relative;
     left:432px;
     bottom:44px;
+    color: #FD3305;
+    font-style: bold;
+}
+
+.registerConfirmPasswordError{
+    position: relative;
+    left:340px;
+    bottom:76px;
     color: #FD3305;
     font-style: bold;
 }

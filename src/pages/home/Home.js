@@ -15,22 +15,19 @@ class Home extends Component{
 
         // var navigate = useNavigate();
 
-        console.log("vim até aqui!");
         firebase.auth().onAuthStateChanged((user) =>{
 
             if(user){
-                console.log("ta logado!");
-                console.log(user.uid);
-                firebase.firestore().collection("user").doc(user.uid)
-                .get()
-                .then((snapshot)=>{
+                // console.log(user.uid);
+                // firebase.firestore().collection("user").doc(user.uid)
+                // .get()
+                // .then((snapshot)=>{
 
-                    var nome = snapshot.data().name;
-                    alert("bem vindo " + nome);
-                })
+                //     var nome = snapshot.data().name;
+                // })
 
             }else{
-                console.log("Não ta logado!");
+                // console.log("Não ta logado!");
                 // navigate("/login");
                 // ACHAR UM JEITO DE REDIRECIONAR PARA LOGIN!
             }

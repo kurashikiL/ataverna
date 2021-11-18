@@ -20,13 +20,12 @@ import { Redirect } from "react-router";
 
 // }
 
-// function redirect(){
+// export default function redirect(){
 
+//     console.log("vim até aqui 2");
 //     const navigate = useNavigate();
 //     navigate("/login");
-//     const navigateTo = async () => {
-//         navigate('/login');
-//     }
+
 // }
 
 class Profile extends Component{
@@ -62,8 +61,9 @@ class Profile extends Component{
                 })
 
             }else{
-
-                // redirect();
+                // console.log("vim aqui");
+                 
+                // () => redirect();
 
                 // <Redirect to="/login"></Redirect>
                 // ACHAR UM JEITO DE REDIRECIONAR PARA LOGIN!

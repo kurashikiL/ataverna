@@ -28,7 +28,7 @@ function Login(){
 
         })
         .catch((error) => {
-            if(error.code === 'auth/wrong-password'){
+            if(error.code === 'auth/wrong-password' || error.code ==='auth/invalid-email'){
                 alert("email ou senha incorretos!");
             }else{
                 console.log("Deu ruim!");
@@ -83,7 +83,7 @@ function Login(){
                         <div className="loginInputs">
                             <input placeholder="Login" {...register('email')}></input>
                             <span className ="loginMainError">{
-                                        errors.login && "Todos os campos são obrigatórios!"
+                                        errors.email && "Todos os campos são obrigatórios!"
                                     || errors.password && "Todos os campos são obrigatórios!"}
                             </span>
                             <br></br>

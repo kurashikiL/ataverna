@@ -106,7 +106,7 @@ function Register(){
                                 <br></br>
                                  
                                 <input name="email" placeholder="E-mail" {...register('email')}></input>
-                                <span className ="registerSecondaryError">
+                                <span className ="registerEmailError">
                                     {errors.email && errors.email.type==="email" && "Insira um e-mail válido"}
                                 </span>
                                 <br></br>
@@ -115,12 +115,12 @@ function Register(){
                                 <br></br>
                                 
                                 <input name="confirmPassword" type="password"  placeholder="Confirmar Senha" {...register('confirmPassword')}></input>
-                                <span className ="registerSecondaryError">
-                                    {errors.confirmPassword && errors.confirmPassword.type==="oneOf" && "Senhas não são iguais"}
-                                </span>
 
                         </div>
                         <input type="submit" name="submit" className="enterButton" value="Cadastrar"></input>
+                        <span className ="registerConfirmPasswordError">
+                                    {errors.confirmPassword && errors.confirmPassword.type==="oneOf" && "Senhas não são iguais"}
+                        </span>
                     </form>
                 </div>
             </div>
