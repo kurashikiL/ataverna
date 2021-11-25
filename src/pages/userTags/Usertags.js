@@ -23,19 +23,6 @@ function Usertag(){
 	};
 
 
-    // useLayoutEffect(() => {
-    //     firebase.auth().onAuthStateChanged((user) =>{
-    //         if(user){
-    //             console.log("usuário logado");
-    //             uid = user.uid;
-    //             console.log(uid);
-    //         }else{
-    //             console.log("nenhum usuário logado, redirecionando...")
-    //             navigate("/login");
-    //         }
-    //     });
-    // },[]);
-
     async function setProfilePic(){
 
         let file = selectedFile;
