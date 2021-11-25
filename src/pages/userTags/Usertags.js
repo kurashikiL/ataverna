@@ -1,6 +1,6 @@
 import "./usertags.css"
 import {userSchema} from "../../validation/userValidation.js";
-import React, {Component, useLayoutEffect} from 'react';
+import React, {Component, useLayoutEffect, useState} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,11 +14,21 @@ function Usertag(){
 
     let uid="";
 
+    // const {register,handleSubmit,formState: { errors }} = useForm();
+    const [selectedFile, setSelectedFile] = useState();
+
+    const changeHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
+        console.log("atualizei imagem");
+	};
+
+
     useLayoutEffect(() => {
         firebase.auth().onAuthStateChanged((user) =>{
             if(user){
                 console.log("usuário logado");
                 uid = user.uid;
+                console.log(uid);
             }else{
                 console.log("nenhum usuário logado, redirecionando...")
                 navigate("/login");
@@ -26,27 +36,35 @@ function Usertag(){
         });
     },[]);
 
-    async function setProfilePic(e){
+    async function setProfilePic(){
 
-        let file = e.target.files[0];
-
-        await firebase.auth().onAuthStateChanged((user) =>{
-            if(user){
-
-                firebase.storage().ref("ProfilePic").child(uid).put(file)
-                .then((e) => {
+        let file = selectedFile;
+        console.log(selectedFile);
+        console.log("veio até aqui!");
+        console.log(uid);
+        await firebase.storage().ref("ProfilePic").child(uid).put(file)
+                .then(() => {
                     console.log("Upload feito!");
                     navigate("/");
                 });
+
+        // await firebase.auth().onAuthStateChanged((user) =>{
+        //     if(user){
+        //         console.log(uid);
+        //         firebase.storage().ref("ProfilePic").child(uid).put(file)
+        //         .then(() => {
+        //             console.log("Upload feito!");
+        //             navigate("/");
+        //         });
                 
 
-            }else{
-                navigate("/login");
-            }
+        //     }else{
+        //         navigate("/login");
+        //     }
 
-        });
+        // });
 
-
+        return;
 
     };
 
@@ -55,14 +73,16 @@ function Usertag(){
             <div className="cardTags">
                 <div className="cardTagsItem">
                     <h1>Informações de Perfil</h1>
-                    <form /*onSubmit={handleSubmit(submitForm)}*/>
+                    {/* <form onSubmit={setProfilePic}> */}
                         <div>
-                            <input id="upPic" type="file" onChange={(e) => {setProfilePic(e)}}></input>
+                            <input id="upPic" type="file" onChange={changeHandler} /*{...register('pic')}*/></input>
                             <br></br>                               
-                            <input name="desc" placeholder="Descrição"></input>
+                            <input name="desc" placeholder="Descrição" /*{...register('desc')}*/></input>
                             <br></br>
+
+                            <input type="submit" onClick={setProfilePic}></input>
                         </div>
-                    </form>
+                    {/* </form> */}
                 </div>
             </div>
         </div>

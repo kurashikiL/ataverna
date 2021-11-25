@@ -10,7 +10,7 @@ function Topbar(){
     
     const navigate = useNavigate();
     const navigateTo = async () => {
-        console.log("entrouuuuu")
+        console.log("deslogando...")
         await firebase.auth().signOut();
         navigate('/login');
     }
