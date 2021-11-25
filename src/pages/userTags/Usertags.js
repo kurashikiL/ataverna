@@ -23,7 +23,7 @@ function Usertag(){
     const [backgroundPic, setBackgroundPic] = useState();
     const [otimin, setOtimin] = useState('1');
     const [roleplay, setRoleplay] = useState('1');
-    const [homebrew, setHomebrew] = useState('false');
+    const [homebrew, setHomebrew] = useState('0');
 
     const changeDescription = (event) =>{
         setDescription(event.target.value);

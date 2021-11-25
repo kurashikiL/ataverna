@@ -16,6 +16,9 @@ function Profile(){
     const [backgroundPic, setBackgroundPic] = useState();
     const [nick,setNick] = useState();
     const [description,setDescription] = useState();
+    const [otimin, setOtimin] = useState('1');
+    const [roleplay, setRoleplay] = useState('1');
+    const [homebrew, setHomebrew] = useState('0');
 
 
     let uid=""; 
@@ -31,6 +34,13 @@ function Profile(){
                 then((snapshot) =>{
                     setNick(snapshot.data().nick);
                     setDescription(snapshot.data().description);
+                    setOtimin(snapshot.data().otimin);
+                    setRoleplay(snapshot.data().roleplay);
+                    if(snapshot.data().homebrew == '1'){
+                        setHomebrew("Sim");
+                    } else{
+                        setHomebrew("Não");
+                    }
                 })
 
                 firebase.storage().ref("Users").child(uid).child("ProfilePic").getDownloadURL()
@@ -56,18 +66,20 @@ function Profile(){
                 <Sidebar/>
                 <div className="profileRight">
                     <div className="profileRightTop">
-                        <div className="profileCover">
-                            <img className="profileCoverImg" src={backgroundPic} alt=""/>
-                            <img className="profilePicImg" src={profilePic} alt=""/>     
+                        <div className="profileBackground">
+                            <img className="profileImgCover" src={backgroundPic} alt=""/>
+                            <img className="profileImgPic" src={profilePic} alt=""/>     
                         </div>
                         <div className="profileInfo">
-                            <h4 className="profileInfoName">{nick}</h4>
-                            <span className="profileInfoDesc">{description}</span>
+                            <h4 className="profileName">{nick}</h4>
+                            <span className="profileDesc">{description}</span>
                         </div>
                     </div>
                 
                     <div className="profileRightBottom">
-                        <StarRating/>
+                        <div className="divOtimin">Otimização: {otimin}</div>
+                        <div className="divRoleplay">Roleplay: {roleplay}</div>
+                        <div className="divHomebrew">Regras da Casa: {homebrew}</div>
                         <div className="profileTags">
                             
                         </div>

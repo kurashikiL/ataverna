@@ -43,10 +43,12 @@ function Sidebar(){
                         <Videocam className="sidebarIcon"/>
                         <span className="sidebarListItemText">Streams</span>
                     </li>
-                    <li className="sidebarListItem">
-                        <Settings className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Configurações</span>
-                    </li>
+                    <Link to="/tags" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <li className="sidebarListItem">
+                            <Settings className="sidebarIcon"/>
+                            <span className="sidebarListItemText">Configurações</span>
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <Help className="sidebarIcon"/>
                         <span className="sidebarListItemText">Ajuda</span>
