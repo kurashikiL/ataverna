@@ -80,8 +80,7 @@ function Usertag(){
                             <input name="desc" placeholder="Descrição" /*{...register('desc')}*/></input>
                             <br></br>
 
-                            {/* <input type="submit" onClick={setProfilePic}></input> */}
-                            <button onClick={setProfilePic}>Enviar</button>
+                            <input type="submit" onClick={setProfilePic}></input>
                         </div>
                     {/* </form> */}
                 </div>

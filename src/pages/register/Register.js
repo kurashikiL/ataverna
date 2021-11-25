@@ -29,8 +29,9 @@ function Register(){
                 name: data.name,
                 nick: data.nick,
             });
+        }).then(async (value) => {
             console.log("Cadastrou com sucesso!");
-            navigate("/tags");
+            await navigate("/tags");
         })
         .catch((error) => {
             if(error.code === 'auth/email-already-in-use'){
@@ -38,8 +39,10 @@ function Register(){
             }else{
                 console.log("Deu ruim!");
                 console.log("Erro: " + error);
+                return;
             }
         })
+        
     };
 
 
