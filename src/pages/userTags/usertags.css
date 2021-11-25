@@ -7,9 +7,21 @@
     justify-content: center;
     background:#FD3305;
 }
-/* input[type="file"] {
-    display: none;
-  } */
+.ContainterRadioOtimin{
+    align-items: center;
+    justify-content: center;
+    float: left;
+    background-color: violet;
+}
+.radioGroup{
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+.radioLeft{
+    float: left;
+    margin-left: 4px;
+}
 .cardTags{
     width: 75%;
     background-color: white;

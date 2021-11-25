@@ -13,7 +13,10 @@ function Profile(){
 
     const navigate = useNavigate();
     const [profilePic, setProfilePic] = useState();
+    const [backgroundPic, setBackgroundPic] = useState();
     const [nick,setNick] = useState();
+    const [description,setDescription] = useState();
+
 
     let uid=""; 
 
@@ -27,12 +30,18 @@ function Profile(){
                 .get().
                 then((snapshot) =>{
                     setNick(snapshot.data().nick);
+                    setDescription(snapshot.data().description);
                 })
 
-                firebase.storage().ref("ProfilePic").child(uid).getDownloadURL()
-                    .then( async (url) => {
-                        setProfilePic(url);
-                    });
+                firebase.storage().ref("Users").child(uid).child("ProfilePic").getDownloadURL()
+                .then( async (url) => {
+                    setProfilePic(url);
+                });
+                firebase.storage().ref("Users").child(uid).child("BackgroundPic").getDownloadURL()
+                .then( async (url) => {
+                    setBackgroundPic(url);
+                });
+
             }else{
                 console.log("nenhum usuário logado, redirecionando...")
                 navigate("/login");
@@ -48,12 +57,12 @@ function Profile(){
                 <div className="profileRight">
                     <div className="profileRightTop">
                         <div className="profileCover">
-                            <img className="profileCoverImg" src={profilePic} alt=""/>
+                            <img className="profileCoverImg" src={backgroundPic} alt=""/>
                             <img className="profilePicImg" src={profilePic} alt=""/>     
                         </div>
                         <div className="profileInfo">
                             <h4 className="profileInfoName">{nick}</h4>
-                            <span className="profileInfoDesc">Mestre de DnD</span>
+                            <span className="profileInfoDesc">{description}</span>
                         </div>
                     </div>
                 

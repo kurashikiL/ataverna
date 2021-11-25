@@ -15,7 +15,8 @@ const StarRating = () => {
                     <label>
                         <input 
                             type = "radio" 
-                            name = "rating" 
+                            name = "rating"
+                            className = "radioRating" 
                             value={ratingValue}
                             onClick={() => setRating(ratingValue)}
 
@@ -29,7 +30,7 @@ const StarRating = () => {
                     </label>
                 );
             })}
-            <p>A nota é {rating}</p>
+            <p>{rating}</p>
         </div>
     )
 }
