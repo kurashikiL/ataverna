@@ -14,17 +14,17 @@ function Home(){
 
     let uid="";
 
-    useLayoutEffect(() => {
-        firebase.auth().onAuthStateChanged((user) =>{
-            if(user){
-                console.log("usuário logado");
-                uid = user.uid;
-            }else{
-                console.log("nenhum usuário logado, redirecionando...")
-                navigate("/login");
-            }
-        });
-    },[]);
+    // useLayoutEffect(() => {
+    //     firebase.auth().onAuthStateChanged((user) =>{
+    //         if(user){
+    //             console.log("usuário logado");
+    //             uid = user.uid;
+    //         }else{
+    //             console.log("nenhum usuário logado, redirecionando...")
+    //             navigate("/login");
+    //         }
+    //     });
+    // },[]);
 
 
     return(

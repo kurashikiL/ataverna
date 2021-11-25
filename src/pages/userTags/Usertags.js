@@ -23,48 +23,47 @@ function Usertag(){
 	};
 
 
-    useLayoutEffect(() => {
-        firebase.auth().onAuthStateChanged((user) =>{
-            if(user){
-                console.log("usuário logado");
-                uid = user.uid;
-                console.log(uid);
-            }else{
-                console.log("nenhum usuário logado, redirecionando...")
-                navigate("/login");
-            }
-        });
-    },[]);
+    // useLayoutEffect(() => {
+    //     firebase.auth().onAuthStateChanged((user) =>{
+    //         if(user){
+    //             console.log("usuário logado");
+    //             uid = user.uid;
+    //             console.log(uid);
+    //         }else{
+    //             console.log("nenhum usuário logado, redirecionando...")
+    //             navigate("/login");
+    //         }
+    //     });
+    // },[]);
 
     async function setProfilePic(){
 
         let file = selectedFile;
         console.log(selectedFile);
         console.log("veio até aqui!");
-        console.log(uid);
-        await firebase.storage().ref("ProfilePic").child(uid).put(file)
-                .then(() => {
-                    console.log("Upload feito!");
-                    navigate("/");
-                });
-
-        // await firebase.auth().onAuthStateChanged((user) =>{
-        //     if(user){
-        //         console.log(uid);
-        //         firebase.storage().ref("ProfilePic").child(uid).put(file)
+        // console.log(uid);
+        // await firebase.storage().ref("ProfilePic").child(uid).put(file)
         //         .then(() => {
         //             console.log("Upload feito!");
         //             navigate("/");
         //         });
+
+        await firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                console.log(user.uid);
+                console.log("veio até aqui (2)");
+                firebase.storage().ref("ProfilePic").child(user.uid).put(file)
+                .then(() => {
+                    console.log("Upload feito!");
+                    navigate("/");
+                });
                 
 
-        //     }else{
-        //         navigate("/login");
-        //     }
+            }else{
+                navigate("/login");
+            }
 
-        // });
-
-        return;
+        });
 
     };
 
