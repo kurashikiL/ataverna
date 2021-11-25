@@ -15,18 +15,31 @@ function Usertag(){
     let uid="";
 
     // const {register,handleSubmit,formState: { errors }} = useForm();
-    const [selectedFile, setSelectedFile] = useState();
+    const [description, setDescription] = useState();
+    const [profilePic, setProfilePic] = useState();
+    const [backgroundPic, setBackgroundPic] = useState();
 
-    const changeHandler = (event) => {
-		setSelectedFile(event.target.files[0]);
-        console.log("atualizei imagem");
+    const changeDescription = (event) =>{
+        setDescription(event.target.value);
+        console.log(event.target.value);
+    };
+
+    const changeProfilePic = (event) => {
+		setProfilePic(event.target.files[0]);
+        console.log("atualizei imagem perfil");
 	};
 
+    const changeBackgrounPic = (event) =>{
+        setBackgroundPic(event.target.files[0]);
+        console.log("atualizei imagem background");
+    };
 
-    async function setProfilePic(){
 
-        let file = selectedFile;
-        console.log(selectedFile);
+    async function setRegister(){
+
+        let file1 = profilePic;
+        let file2 = backgroundPic;
+        console.log(profilePic);
         console.log("veio até aqui!");
         // console.log(uid);
         // await firebase.storage().ref("ProfilePic").child(uid).put(file)
@@ -39,11 +52,24 @@ function Usertag(){
             if(user){
                 console.log(user.uid);
                 console.log("veio até aqui (2)");
-                firebase.storage().ref("ProfilePic").child(user.uid).put(file)
-                .then(() => {
-                    console.log("Upload feito!");
-                    navigate("/");
+                firebase.storage().ref("Users").child(user.uid).child("ProfilePic").put(file1)
+                .then( async () => {
+                    await firebase.firestore().collection("user").doc(user.uid)
+                    .update({
+                        description: description,
+                    });
+                    await firebase.storage().ref("Users").child(user.uid).child("BackgroundPic").put(file2)
+                    .then(()=>{
+                        console.log("Upload feito!");
+                        navigate("/");
+                    });
+                    
                 });
+                
+                // .then(() => {
+                //     console.log("Upload feito!");
+                //     navigate("/");
+                // });
                 
 
             }else{
@@ -61,12 +87,14 @@ function Usertag(){
                     <h1>Informações de Perfil</h1>
                     {/* <form onSubmit={setProfilePic}> */}
                         <div>
-                            <input id="upPic" type="file" onChange={changeHandler} /*{...register('pic')}*/></input>
+                            <input id="upPic" type="file" placeholder ="foto perfil" onChange={changeProfilePic} /*{...register('pic')}*/></input>
+                            <br></br>
+                            <input id="upPic" type="file" onChange={changeBackgrounPic} /*{...register('pic')}*/></input>
                             <br></br>                               
-                            <input name="desc" placeholder="Descrição" /*{...register('desc')}*/></input>
+                            <input name="desc" placeholder="Descrição" onChange={changeDescription} /*{...register('desc')}*/></input>
                             <br></br>
 
-                            <input type="submit" onClick={setProfilePic}></input>
+                            <input type="submit" onClick={setRegister}></input>
                         </div>
                     {/* </form> */}
                 </div>

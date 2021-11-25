@@ -14,7 +14,7 @@ function Share() {
         firebase.auth().onAuthStateChanged((user) =>{
             if(user){
                 uid = user.uid;
-                firebase.storage().ref("ProfilePic").child(uid).getDownloadURL()
+                firebase.storage().ref("Users").child(uid).child("ProfilePic").getDownloadURL()
                 .then( async (url) => {
                     setProfilePic(url);
                 });

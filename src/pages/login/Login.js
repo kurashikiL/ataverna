@@ -73,9 +73,9 @@ function Login(){
                         <button className ="loginRetrival"> Esqueci minha senha</button>
                         <input type="submit" name="submit" className="enterButton" value="Entrar"></input>
                         
-                        <div className="otherOptions">
+                        {/* <div className="otherOptions">
                             Ou entre com:
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </div>
