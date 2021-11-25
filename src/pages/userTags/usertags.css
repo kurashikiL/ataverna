@@ -7,16 +7,65 @@
     justify-content: center;
     background:#FD3305;
 }
-.ContainterRadioOtimin{
+.moreInfos{
+    margin-top: 32px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+/* .ContainterRadioOtimin{
     align-items: center;
     justify-content: center;
     float: left;
     background-color: violet;
+} */
+.formLabel{
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.inputDesc{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 40%;    
+    padding: 20px 32px;
+    border: 1px solid #ccc;
+    
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    font-size: 20px;
+    font-style: bold;
 }
 .radioGroup{
+    margin: 8px;
     align-items: center;
     justify-content: center;
     display: block;
+}
+
+.labelFile {
+    background-color: #FD3305;
+    width: 20%;
+    color: white;
+    padding: 20px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-style: bold;
+}
+input[type="file"] {
+    display: none;
+}
+
+.labelFile{
+    background: #fd5d38
 }
 .radioLeft{
     float: left;
@@ -33,4 +82,22 @@
 }
 .cardTagsItem{
     margin: 16px;
+}
+.submitButton{
+    left: 280px;
+
+    /* width: 20%; */
+    background-color: #FD3305;
+    color: white;
+    padding: 20px 50px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-style: bold;
+}
+.submitButton:hover{
+    background-color: #fd5d38;
 }
