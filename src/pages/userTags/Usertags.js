@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Input, makeStyles } from "@material-ui/core";
 import { Person } from "@material-ui/icons";
 import firebase from '../../Firebase';
-import StarRating from "../../components/starrating/Star";
 import { RadioGroup, Radio, FormControlLabel, FormControl, FormLabel } from "@material-ui/core";
 
 
@@ -18,12 +17,12 @@ function Usertag(){
     let uid="";
 
     // const {register,handleSubmit,formState: { errors }} = useForm();
-    const [description, setDescription] = useState();
+    const [description, setDescription] = useState("");
     const [profilePic, setProfilePic] = useState();
     const [backgroundPic, setBackgroundPic] = useState();
     const [otimin, setOtimin] = useState('1');
     const [roleplay, setRoleplay] = useState('1');
-    const [homebrew, setHomebrew] = useState('false');
+    const [homebrew, setHomebrew] = useState('0');
 
     const changeDescription = (event) =>{
         setDescription(event.target.value);
@@ -98,14 +97,28 @@ function Usertag(){
                 <div className="cardTagsItem">
                     <h1>Informações de Perfil</h1>
                     {/* <form onSubmit={setProfilePic}> */}
-                        <div>
-                            <input id="upPic" type="file" placeholder ="foto perfil" onChange={changeProfilePic} /*{...register('pic')}*/></input>
+                        <div className="moreInfos">
+                            <label className="formLabel">Adicione Sua foto de Perfil:</label>
                             <br></br>
-                            <input id="upPic" type="file" onChange={changeBackgrounPic} /*{...register('pic')}*/></input>
+                            {/* <input id="upPic" type="file" className="custom-file-input" onChange={changeProfilePic}/> */}
+                            <div className="labelFile">
+                                <label for="profile">Enviar Foto</label>
+                                <input type="file" name="profile" id="profile" onChange={changeProfilePic}/>
+                            </div>
+                            <br></br>
+                            <label className="formLabel">Adicione Sua foto de Capa:</label>
+                            <br></br>
+                            {/* <input id="upPic" type="file" className="custom-file-input" onChange={changeBackgrounPic}/> */}
+                            <div className="labelFile">
+                                <label for="cover">Enviar Capa</label>
+                                <input type="file" name="cover" id="cover" onChange={changeBackgrounPic}/>
+                            </div>
+                            <br></br>
+                            <label className="formLabel">Escreva sua descrição</label>
                             <br></br>                               
-                            <input name="desc" placeholder="Descrição" onChange={changeDescription} /*{...register('desc')}*/></input>
+                            <input name="desc" className="inputDesc" placeholder="Descrição" onChange={changeDescription} /*{...register('desc')}*/></input>
                             <br></br>
-                            <label>O quanto você gosta de Role Play?</label>
+                            <label className="formLabel">O quanto você gosta de Role Play?</label>
                             <RadioGroup value = {roleplay} className = "radioGroup" onChange={(e) => setRoleplay(e.target.value)} row>
                                 <FormControlLabel value="1" labelPlacement="bottom" control={<Radio />} label="1" />
                                 <FormControlLabel value="2" labelPlacement="bottom" control={<Radio />} label="2" />
@@ -114,7 +127,7 @@ function Usertag(){
                                 <FormControlLabel value="5" labelPlacement="bottom" control={<Radio />} label="5" />
                             </RadioGroup>
                             <br></br>
-                            <label>O quanto você gosta de Otimização de Personagem?</label>
+                            <label className="formLabel">O quanto você gosta de Otimização de Personagem?</label>
                             <RadioGroup value = {otimin} className = "radioGroup" onChange={(e) => setOtimin(e.target.value)} row>
                                 <FormControlLabel value="1" labelPlacement="bottom" control={<Radio />} label="1" />
                                 <FormControlLabel value="2" labelPlacement="bottom" control={<Radio />} label="2" />
@@ -123,13 +136,13 @@ function Usertag(){
                                 <FormControlLabel value="5" labelPlacement="bottom" control={<Radio />} label="5" />
                             </RadioGroup>
                             <br></br>
-                            <label>Aceita Regras da casa?</label>
+                            <label className="formLabel">Aceita Regras da casa?</label>
                             <RadioGroup value = {homebrew} className = "radioGroup" onChange={(e) => setHomebrew(e.target.value)}>
                                 <FormControlLabel value="1" control={<Radio />} label="Sim" />
                                 <FormControlLabel value="0" control={<Radio />} label="Não" />
                             </RadioGroup>
                             <br></br>
-                            <input type="submit" onClick={setRegister}></input>
+                            <input type="submit" className="submitButton" onClick={setRegister}></input>
                         </div>
                     {/* </form> */}
                 </div>
